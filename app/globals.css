@@ -1,26 +1,256 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navbar-background: var(--navbar-background);
+  --color-background-light: var(--light-background);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-sidebar-selected-text: var(--sidebar-selected-text);
+  --color-sidebar-icon-color: var(--sidebar-icon-color);
+  --color-system-green-primary: var(--system-green-primary);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-primary-muted: var(--primary-muted);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --icon-color: var(--icon-color);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --breakpoint-xl: 100rem;
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================
+   TEMA CLARO - Premium & Profissional
+   ============================================ */
+:root {
+  /* Raios de borda modernos */
+  --radius: 0.75rem;
+
+  /* Backgrounds - Tons neutros com toque de sofisticação */
+  --navbar-background: #ffffff;
+  --background: #fafbfc;
+  --light-background: #f4f6f8;
+  --sidebar-bg: #ffffff;
+
+  /* Cores principais - Azul moderno e profissional */
+  --primary: #2563eb; /* Azul vibrante e confiável */
+  --primary-muted: #60a5fa; /* Azul suave */
+  --primary-foreground: #ffffff;
+
+  /* Secundárias - Cinzas sofisticados */
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  /* Neutros e Muted */
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* Accent - Roxo/Índigo premium */
+  --accent: #eef2ff;
+  --accent-foreground: #4f46e5;
+
+  /* Cards e Popovers */
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  /* Textos */
+  --foreground: #0f172a;
+
+  /* Bordas e Inputs */
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+
+  /* Destrutivo - Vermelho equilibrado */
+  --destructive: #ef4444;
+
+  /* Sistema de sucesso */
+  --system-green-primary: #10b981;
+
+  /* Sidebar específico */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f8fafc;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #2563eb;
+  --sidebar-icon-color: #64748b;
+  --sidebar-selected-text: #2563eb;
+
+  /* Ícones gerais */
+  --icon-color: #64748b;
+
+  /* Charts - Paleta harmoniosa e profissional */
+  --chart-1: #2563eb; /* Azul primário */
+  --chart-2: #10b981; /* Verde esmeralda */
+  --chart-3: #8b5cf6; /* Roxo vibrante */
+  --chart-4: #f59e0b; /* Âmbar */
+  --chart-5: #ec4899; /* Rosa moderno */
+}
+
+/* ============================================
+   TEMA ESCURO - Elegante & Moderno
+   ============================================ */
+.dark {
+  /* Backgrounds - Tons escuros sofisticados */
+  --navbar-background: #0f172a;
+  --background: #020617;
+  --light-background: #0f172a;
+  --sidebar-bg: #0f172a;
+
+  /* Cores principais - Azul brilhante para destaque */
+  --primary: #3b82f6;
+  --primary-muted: #60a5fa;
+  --primary-foreground: #ffffff;
+
+  /* Secundárias */
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+
+  /* Neutros e Muted */
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+
+  /* Accent */
+  --accent: #1e1b4b;
+  --accent-foreground: #a5b4fc;
+
+  /* Cards e Popovers */
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+
+  /* Textos */
+  --foreground: #f8fafc;
+
+  /* Bordas e Inputs */
+  --border: rgba(148, 163, 184, 0.15);
+  --input: rgba(148, 163, 184, 0.2);
+  --ring: #3b82f6;
+
+  /* Destrutivo */
+  --destructive: #f87171;
+
+  /* Sistema de sucesso */
+  --system-green-primary: #34d399;
+
+  /* Sidebar específico */
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: rgba(148, 163, 184, 0.15);
+  --sidebar-ring: #3b82f6;
+  --sidebar-icon-color: #94a3b8;
+  --sidebar-selected-text: #60a5fa;
+
+  /* Ícones gerais */
+  --icon-color: #94a3b8;
+
+  /* Charts - Cores vibrantes para modo escuro */
+  --chart-1: #3b82f6;
+  --chart-2: #34d399;
+  --chart-3: #a78bfa;
+  --chart-4: #fbbf24;
+  --chart-5: #f472b6;
+}
+
+/* ============================================
+   ESTILOS BASE
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================
+   SCROLLBAR CUSTOMIZADA - Premium
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+}
+
+/* Scrollbar para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2563eb transparent;
+}
+
+/* Scrollbar no modo escuro */
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+}
+
+.dark * {
+  scrollbar-color: #3b82f6 transparent;
 }
