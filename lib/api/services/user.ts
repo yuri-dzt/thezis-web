@@ -2,9 +2,11 @@
 
 import { revalidateTag } from "next/cache"
 
-import { apiClient } from "../client"
+import { apiClient, ApiError } from "../client"
 import { User } from "@/types/entities/user"
 import { ActionResponse } from "@/types/action-response"
+import { cookies } from "next/headers"
+import { handleUnauthorized } from "./handle-unauthorized"
 
 interface CreateUserProps {
   name: string
@@ -38,6 +40,20 @@ export const getUsers = async (): Promise<ActionResponse<{ users: User[] }>> => 
     };
   } catch (err) {
     console.error(err);
+
+    if (err instanceof ApiError && err.status === 401) {
+      const cookieStore = await cookies();
+      cookieStore.delete("access_token");
+      cookieStore.delete("refresh_token");
+
+      return {
+        success: false,
+        error: {
+          code: 'UNAUTHORIZED',
+          message: 'Sessão expirada',
+        },
+      };
+    }
 
     return {
       success: false,

@@ -21,7 +21,6 @@ import { cn, getInitials } from "@/lib/utils";
 import { useSidebar } from "@/components/ui/sidebar";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-// import { getCurrentUser, logout } from "@/lib/api/services/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -62,6 +61,7 @@ export const Navbar = (props: NavbarProps) => {
   useEffect(() => {
     async function getUserName() {
       const user = await refreshAccount();
+
       const userData = user.response;
 
       if (userData) {
