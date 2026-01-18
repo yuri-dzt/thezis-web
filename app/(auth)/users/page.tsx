@@ -1,10 +1,12 @@
 import { Suspense } from "react";
 
 import { getUsers } from "@/lib/api/services/user";
-import { UserList } from "./_components/users-list";
-import { UserListSkeleton } from "./_components/users-list-skeleton";
 import { Page } from "../_components/page-wrapper";
+import { UserList } from "./_components/users-list";
 import { CreateUserPopup } from "./_components/create-user-popup";
+import { UserListSkeleton } from "./_components/users-list-skeleton";
+
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const users = await getUsers();
@@ -22,7 +24,7 @@ export default async function Home() {
     <Page className="flex flex-col! items-start! gap-6">
       <div className="w-full flex items-center justify-between">
         <h1 className="text-xl font-bold">Lista de Usuários</h1>
-      <CreateUserPopup />
+        <CreateUserPopup />
       </div>
 
       <Suspense fallback={<UserListSkeleton />}>

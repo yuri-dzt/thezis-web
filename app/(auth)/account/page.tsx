@@ -1,8 +1,8 @@
-import { Suspense } from "react";
-
-import { getUsers, refreshAccount } from "@/lib/api/services/user";
 import { Page } from "../_components/page-wrapper";
+import { refreshAccount } from "@/lib/api/services/user";
 import { AccountInfoCard } from "./_components/account-info-card";
+
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const user = await refreshAccount();

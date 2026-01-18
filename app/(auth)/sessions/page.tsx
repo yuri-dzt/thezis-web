@@ -1,10 +1,12 @@
 import { Suspense } from "react";
 
 import { Page } from "../_components/page-wrapper";
-import { SessionsList } from "./_components/sessions-list";
-import { getSessions } from "@/lib/api/services/sessions";
-import { SessionsListSkeleton } from "./_components/sessions-list-skeleton";
 import { refreshAccount } from "@/lib/api/services/user";
+import { getSessions } from "@/lib/api/services/sessions";
+import { SessionsList } from "./_components/sessions-list";
+import { SessionsListSkeleton } from "./_components/sessions-list-skeleton";
+
+export const dynamic = "force-dynamic";
 
 export default async function Sessions() {
   const sessions = await getSessions();
