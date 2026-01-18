@@ -1,12 +1,11 @@
 'use server'
 
+import { cookies } from "next/headers"
 import { revalidateTag } from "next/cache"
 
-import { apiClient, ApiError } from "../client"
 import { User } from "@/types/entities/user"
+import { apiClient, ApiError } from "../client"
 import { ActionResponse } from "@/types/action-response"
-import { cookies } from "next/headers"
-import { handleUnauthorized } from "./handle-unauthorized"
 
 interface CreateUserProps {
   name: string

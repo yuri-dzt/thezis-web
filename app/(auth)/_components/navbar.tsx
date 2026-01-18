@@ -17,7 +17,9 @@ import {
 
 import { MENU_ITEMS } from "./sidebar";
 import { SidebarLink } from "./sidebar-link";
+import { User } from "@/types/entities/user";
 import { cn, getInitials } from "@/lib/utils";
+import { logout } from "@/lib/api/services/auth";
 import { useSidebar } from "@/components/ui/sidebar";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -40,37 +42,21 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { logout } from "@/lib/api/services/auth";
-import { refreshAccount } from "@/lib/api/services/user";
 
 interface NavbarProps {
   refresh_token?: string;
+  user: User
 }
 
 export const Navbar = (props: NavbarProps) => {
   const [confirmLogoutOpen, setConfirmLogoutOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [userName, setUserName] = useState("");
   const [isMobileScreen, setIsMobileScreen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const { open, setOpen, isMobile } = useSidebar();
   const { theme, setTheme } = useTheme();
   const { replace } = useRouter();
-
-  useEffect(() => {
-    async function getUserName() {
-      const user = await refreshAccount();
-
-      const userData = user.response;
-
-      if (userData) {
-        setUserName(userData.name);
-      }
-    }
-
-    getUserName();
-  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -94,7 +80,7 @@ export const Navbar = (props: NavbarProps) => {
 
   async function onConfirmLogoutClick() {
     try {
-      await logout(props.refresh_token);
+      await logout();
 
       replace("/login");
     } catch (error) {
@@ -191,15 +177,15 @@ export const Navbar = (props: NavbarProps) => {
         <DropdownMenu>
           <DropdownMenuTrigger className="w-9 h-9 flex justify-center items-center cursor-pointer">
             <Avatar className="w-9 h-9">
-              <AvatarFallback>{getInitials(userName)}</AvatarFallback>
+              <AvatarFallback>{getInitials(props.user.name)}</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-40" align="end">
-            <DropdownMenuLabel>{userName.split(" ")[0]}</DropdownMenuLabel>
+            <DropdownMenuLabel>{props.user.name.split(" ")[0]}</DropdownMenuLabel>
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Link
-                  href="/platform/account"
+                  href="/account"
                   className="w-full cursor-pointer"
                 >
                   Minha conta

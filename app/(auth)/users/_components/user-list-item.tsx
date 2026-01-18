@@ -66,8 +66,7 @@ const UserItem = ({ user, index }: UserItemProps) => {
       user_id: user.id,
       name: user.name,
       email: user.email,
-      password: "",
-      role: user.role,
+      role: user.role.toLowerCase(),
     },
   });
 
@@ -212,24 +211,6 @@ const UserItem = ({ user, index }: UserItemProps) => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input type="email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Senha</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Deixe em branco para manter a atual"
-                        {...field}
-                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

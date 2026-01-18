@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
+
 import { Navbar } from "./_components/navbar";
 import { AppSidebar } from "./_components/sidebar";
+import { refreshAccount } from "@/lib/api/services/user";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default async function AdminLayout({
@@ -10,11 +12,18 @@ export default async function AdminLayout({
 }>) {
   const cookieStore = await cookies();
   const refreshToken = cookieStore.get("refresh_token")?.value;
+  
+  const user = await refreshAccount();
+  if(!user.success || !user.response) {
+    return (
+      <div></div>
+    )
+  }
 
   return (
     <SidebarProvider>
       <div className="w-full h-dvh flex flex-col">
-        <Navbar refresh_token={refreshToken} />
+        <Navbar refresh_token={refreshToken} user={user.response} />
         <div className="flex flex-1">
           <AppSidebar />
           <div className="flex-1 h-[calc(100vh-77px)] overflow-auto">

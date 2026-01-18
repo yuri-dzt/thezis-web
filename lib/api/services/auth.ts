@@ -58,12 +58,13 @@ export const login = async (props: LoginProps): Promise<ActionResponse<LoginResp
 };
 
 //* LOGOUT
-export async function logout(refresh_token?: string) {
+export async function logout() {
   const cookieStore = await cookies();
+  const refreshToken = cookieStore.get('refresh_token')?.value;
 
-  if (refresh_token) {
+  if (refreshToken) {
     try {
-      await apiClient.post('/logout', { refresh_token });
+      await apiClient.post('/logout', { refresh_token: refreshToken });
     } catch {
 
     }
