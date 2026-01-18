@@ -10,9 +10,10 @@ import {
 import { User } from "@/types/entities/user";
 import { Separator } from "@/components/ui/separator";
 import { EditAccountInfoBtn } from "./edit-account-info-btn";
+import { UserRole } from "@/types/enums/user-role";
 
 interface AccountInfoCardProps {
-  user: User
+  user: User;
 }
 
 export async function AccountInfoCard({ user }: AccountInfoCardProps) {
@@ -31,34 +32,30 @@ export async function AccountInfoCard({ user }: AccountInfoCardProps) {
       <CardContent>
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">
-              Nome da empressa
-            </span>
+            <span className="text-sm text-muted-foreground">Nome</span>
             <span className="font-normal text-sm">
               {user.name || "Não definido"}
             </span>
           </div>
           <Separator />
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">
-              Coordenadas da clínica
-            </span>
+            <span className="text-sm text-muted-foreground">E-mail</span>
             <span className="font-normal text-sm">
               {user.email || "Não definido"}
             </span>
           </div>
           <Separator />
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">
-              Situação de e-mail
-            </span>
+            <span className="text-sm text-muted-foreground">Cargo</span>
             <span className="font-normal text-sm">
-              {user.role}
+              {user.role === UserRole.ADMIN ? "Administrador" : "Usuário"}
             </span>
           </div>
           <Separator />
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Data de cadastro</span>
+            <span className="text-sm text-muted-foreground">
+              Data de cadastro
+            </span>
             <span className="font-normal text-sm">
               {new Date(user.created_at).toLocaleString()}
             </span>

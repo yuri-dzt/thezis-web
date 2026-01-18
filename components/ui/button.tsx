@@ -33,7 +33,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 function Button({
@@ -41,6 +41,7 @@ function Button({
   variant,
   size,
   asChild = false,
+  loading,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -55,7 +56,7 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     >
-      {props.loading ? (
+      {loading ? (
         <span className="w-fit flex items-center gap-3">
           <LoaderCircle className="animate-spin size-3" />
           Enviando
