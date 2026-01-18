@@ -3,11 +3,8 @@
 import Link from "next/link";
 import type { ForwardRefExoticComponent, RefAttributes, SVGProps } from "react";
 import {
-  TagsIcon,
-  UsersIcon,
-  ChartNoAxesColumnIncreasingIcon,
-  CloudUploadIcon,
   Users,
+  MonitorSpeaker,
 } from "lucide-react";
 
 import { SidebarLink } from "./sidebar-link";
@@ -35,6 +32,11 @@ export const MENU_ITEMS: SidebarItemData[] = [
     url: "/users",
     icon: Users,
   },
+  {
+    title: "Sessões",
+    url: "/sessions",
+    icon: MonitorSpeaker,
+  }
 ];
 
 export const AppSidebar = () => {

@@ -4,6 +4,7 @@ import { getUsers } from "@/lib/api/services/user";
 import { UserList } from "./_components/users-list";
 import { UserListSkeleton } from "./_components/users-list-skeleton";
 import { Page } from "../_components/page-wrapper";
+import { CreateUserPopup } from "./_components/create-user-popup";
 
 export default async function Home() {
   const users = await getUsers();
@@ -19,7 +20,10 @@ export default async function Home() {
 
   return (
     <Page className="flex flex-col! items-start! gap-6">
-      <h1 className="text-xl font-bold">Lista de Usuários</h1>
+      <div className="w-full flex items-center justify-between">
+        <h1 className="text-xl font-bold">Lista de Usuários</h1>
+      <CreateUserPopup />
+      </div>
 
       <Suspense fallback={<UserListSkeleton />}>
         <UserList users={users.response.users} />

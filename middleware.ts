@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getTokenInCookies } from './lib/get-token-in-cookies'
 
 const PUBLIC_ROUTES = ['/login']
-const PRIVATE_ROUTES = ['/users', '/account']
+const PRIVATE_ROUTES = ['/users', '/account', '/sessions']
 const PROHIBITED_ROUTES = ['/']
 
 export async function middleware(req: NextRequest) {

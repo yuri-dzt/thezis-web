@@ -5,7 +5,7 @@ import { Page } from "../_components/page-wrapper";
 import { AccountInfoCard } from "./_components/account-info-card";
 
 export default async function Home() {
-    const user = await refreshAccount();
+  const user = await refreshAccount();
 
   if (user.error || !user.success || !user.response) {
     return (
