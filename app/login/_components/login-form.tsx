@@ -145,18 +145,6 @@ export default function LoginForm() {
             </Button>
           </form>
         </Form>
-
-        <div className="mt-6 pt-6 border-t border-border/50">
-          <p className="text-center text-sm text-muted-foreground">
-            Não tem uma conta?
-            <Link
-              href=""
-              className="text-primary hover:text-primary/80 font-medium transition-colors cursor-pointer"
-            >
-              Criar conta
-            </Link>
-          </p>
-        </div>
       </CardContent>
     </Card>
   );

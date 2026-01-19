@@ -2,10 +2,7 @@
 
 import Link from "next/link";
 import type { ForwardRefExoticComponent, RefAttributes, SVGProps } from "react";
-import {
-  Users,
-  MonitorSpeaker,
-} from "lucide-react";
+import { Users, MonitorSpeaker } from "lucide-react";
 
 import { SidebarLink } from "./sidebar-link";
 import {
@@ -17,10 +14,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Route } from "next";
 
 export interface SidebarItemData {
   title: string;
-  url: string;
+  url: Route;
   icon: ForwardRefExoticComponent<
     Omit<SVGProps<SVGSVGElement>, "ref"> & RefAttributes<SVGSVGElement>
   >;
@@ -36,7 +34,7 @@ export const MENU_ITEMS: SidebarItemData[] = [
     title: "Sessões",
     url: "/sessions",
     icon: MonitorSpeaker,
-  }
+  },
 ];
 
 export const AppSidebar = () => {
