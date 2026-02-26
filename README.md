@@ -21,7 +21,7 @@ A aplicação permite que o estudante gere temas com textos de apoio simulando o
 
 **1. Clone o repositório**
 ```bash
-git clone https://github.com/seu-usuario/thezis-web.git
+git clone https://github.com/yuri-dzt/thezis-web.git
 cd thezis-web
 ```
 
@@ -85,7 +85,7 @@ thezis-web/
 
 ## 🔗 Repositórios relacionados
 
-- [thezis-api](https://github.com/seu-usuario/thezis-api) — API do projeto
+- [thezis-api](https://github.com/yuri-dzt/thezis-api.git) — API do projeto
 
 ---
 
